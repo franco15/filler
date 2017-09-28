@@ -1,7 +1,7 @@
 NAME = libft.a
 
 SRC =	conv.c fd.c ft_printf.c get_next_line.c lst.c mem.c mem2.c strings.c \
-		strings2.c \
+		strings2.c strings3.c xtra.c\
 
 OBJ = $(SRC:.c=.o)
 

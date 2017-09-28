@@ -31,6 +31,7 @@ typedef struct		s_list
 ** conv.c
 */
 char	*ft_itoa_base(long long int n, int b);
+int		ft_atoi(char const *str);
 
 /*
 ** fd.c
@@ -70,6 +71,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 ** mem2.c
 */
 void	*ft_realloc(void *ptr, size_t size, size_t newsize);
+void	*ft_memmove(void *dst, const void *src, size_t len);
 
 /*
 ** strings.c
@@ -87,5 +89,19 @@ size_t	ft_strlenc(const char *s, char c);
 char	*ft_strcpy(char *dst, const	char *src);
 char	*ft_strcat(char *s1, const char *s2);
 char	*ft_strncat(char *s1, const char *s2, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+
+/*
+** strings3.c
+*/
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*ft_strncpy(char *dst, const char *src, size_t len);
+
+/*
+** xtra.c
+*/
+int		ft_isdigit(int c);
+int		ft_isspace(int c);
+void	ft_error(char *s);
 
 #endif

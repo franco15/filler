@@ -13,86 +13,64 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
-static t_file	*newelem(int fd)
+int	ft_len(char *s)
 {
-	t_file	*elem;
+	int i;
+	int j;
 
-	if (!(elem = ft_memalloc(sizeof(t_file))))
-		return (0);
-	elem->content = ft_memalloc(sizeof(t_line));
-	elem->fd = fd;
-	return (elem);
-}
-
-static void		return_line(t_line *tmp, char *buff, char **line, long l)
-{
-	size_t	i;
-	char	*rd;
-
-	if ((rd = ft_strchr(buff, '\n')) || (!*buff && tmp->ln))
-	{
-		if (rd && rd + 1)
-			tmp->rem = ft_strdup(rd + 1);
-		tmp->w = 1;
-	}
-	else if (!l && !tmp->ln && !*buff)
-		tmp->w = 0;
-	i = ft_strlenc(buff, '\n');
-	tmp->ln = ft_realloc(tmp->ln, tmp->size, tmp->size + i + 1);
-	tmp->ln = ft_strncat(tmp->ln, buff, i);
-	tmp->size = ft_strlen(tmp->ln);
-	*line = tmp->ln;
-}
-
-static int		read_line(t_file *l, char **line)
-{
-	char	*buff;
-	t_line	*tmp;
-	long	i;
-
-	buff = ft_strnew(BUFF_SIZE);
-	tmp = l->content;
-	tmp->ln = 0;
-	tmp->w = -1;
+	j = 0;
 	i = 0;
-	while (tmp->w < 0)
+	while (s[i] != '\0')
 	{
-		if (tmp->rem && *tmp->rem)
-		{
-			if (*tmp->rem)
-				buff = ft_strcat(buff, tmp->rem);
-			ft_strdel(&tmp->rem);
-			tmp->rem = 0;
-		}
-		else if ((i = read(l->fd, buff, BUFF_SIZE)) < 0)
-			return (tmp->w);
-		return_line(tmp, buff, line, i);
-		ft_bzero(buff, BUFF_SIZE);
+		if (s[i] == '\n')
+			j++;
+		i++;
 	}
-	ft_memdel((void**)&buff);
-	return (tmp->w);
+	return (j);
 }
 
-int				get_next_line(const int fd, char **line)
+int	ft_solve(char **line, char *stc_buf)
 {
-	static t_list	*list;
-	t_list			*node;
-	t_file			*file;
-	char			buff[BUFF_SIZE];
+	char *i;
+	char *temp;
 
-	if (fd < 0 || !line || read(fd, buff, 0) < 0)
-		return (-1);
-	if (!list)
-		list = ft_lstnew(newelem(fd), sizeof(t_list));
-	node = list;
-	while (node)
+	if ((i = ft_strchr(stc_buf, '\n')) != 0)
 	{
-		file = node->content;
-		if (file->fd == fd)
-			return (read_line(file, line));
-		node = node->next;
+		temp = ft_strsub(stc_buf, 0, ft_strlen(stc_buf) - ft_strlen(i));
+		ft_memmove(stc_buf, &i[1], ft_strlen(&i[1]) + 1);
+		*line = ft_strdup(temp);
+		return (1);
 	}
-	node = ft_lstnew(newelem(fd), sizeof(t_list));
-	ft_lstaddback(&list, node);
-	return (read_line(node->content, line));
+	if (ft_len(stc_buf) == 0 && ft_strlen(stc_buf) > 0)
+	{
+		*line = ft_strdup(stc_buf);
+		*stc_buf = '\0';
+		return (1);
+	}
+	return (0);
+}
+
+int	get_next_line(const int fd, char **line)
+{
+	static char *stc_buff = NULL;
+	char		buff[BUFF_SIZE + 1];
+	char		*temp2;
+	int			ret;
+
+	if (fd == -1 || BUFF_SIZE <= 0)
+		return (-1);
+	if (stc_buff == NULL)
+		stc_buff = ft_strnew(0);
+	while (!ft_strchr(stc_buff, '\n'))
+	{
+		ret = read(fd, buff, BUFF_SIZE);
+		if (ret == -1)
+			return (-1);
+		if (ret == 0)
+			break ;
+		buff[ret] = '\0';
+		temp2 = ft_strjoin(stc_buff, buff);
+		stc_buff = temp2;
+	}
+	return (ft_solve(line, stc_buff));
 }

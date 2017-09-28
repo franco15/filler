@@ -26,3 +26,26 @@ void	*ft_realloc(void *ptr, size_t size, size_t newsize)
 		new = ft_memalloc(newsize);
 	return (new);
 }
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char	*s;
+	unsigned char	*d;
+	size_t			i;
+
+	i = 0;
+	s = (unsigned char*)src;
+	d = (unsigned char*)dst;
+	if (d > s)
+		while (len--)
+			d[len] = s[len];
+	else
+	{
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (dst);
+}

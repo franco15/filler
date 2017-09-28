@@ -45,3 +45,26 @@ char		*ft_itoa_base(long long int n, int b)
 	}
 	return (num);
 }
+
+int	ft_atoi(char const *str)
+{
+	int	r;
+	int	n;
+
+	r = 0;
+	n = 1;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == 45 || *str == 43)
+	{
+		if (*str == 45)
+			n = -1;
+		str++;
+	}
+	while (ft_isdigit(*str))
+	{
+		r = (r * 10) + (*str - 48);
+		str++;
+	}
+	return (r * n);
+}
