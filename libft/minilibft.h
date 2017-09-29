@@ -28,6 +28,11 @@ typedef struct		s_list
 }					t_list;
 
 /*
+** array.c
+*/
+void	ft_arrdel(void **arr);
+
+/*
 ** conv.c
 */
 char	*ft_itoa_base(long long int n, int b);

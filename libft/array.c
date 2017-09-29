@@ -1,44 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   array.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfranco- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 10:33:14 by lfranco-          #+#    #+#             */
-/*   Updated: 2017/09/28 10:33:16 by lfranco-         ###   ########.fr       */
+/*   Created: 2017/09/28 19:43:57 by lfranco-          #+#    #+#             */
+/*   Updated: 2017/09/28 19:43:58 by lfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "minilibft.h"
 
-#include "../libft/minilibft.h"
-
-typedef struct	s_filler
+void	ft_arrdel(void **arr)
 {
-	int			yo;
-	int			mx;
-	int			my;
-	int			px;
-	int			py;
-	char		**map;
-	char		**pz;
-}				t_filler;
+	void	**tmp;
 
-/*
-** filler.c
-*/
-void	filler(t_filler *f);
-
-/*
-** main.c
-*/
-int		main(int ac, char **av);
-
-/*
-** utils.c
-*/
-void	get_init_coords(t_filler *f);
-
-#endif
+	tmp = arr;
+	if (!arr)
+		return ;
+	while (*tmp)
+	{
+		free(*tmp);
+		*tmp = 0;
+		tmp++;
+	}
+	free(arr);
+	arr = 0;
+}

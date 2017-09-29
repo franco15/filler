@@ -1,44 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   filler.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfranco- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 10:33:14 by lfranco-          #+#    #+#             */
-/*   Updated: 2017/09/28 10:33:16 by lfranco-         ###   ########.fr       */
+/*   Created: 2017/09/28 19:46:30 by lfranco-          #+#    #+#             */
+/*   Updated: 2017/09/28 19:46:31 by lfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "filler.h"
 
-#include "../libft/minilibft.h"
+/*
+** map00 p1 [2, 9] p2 [15, 13]
+** map01 p1 [4, 4] p2 [33, 20]
+** map02 p1 [31, 30] p2 [71, 70]
+*/
 
-typedef struct	s_filler
+void	filler(t_filler *f)
 {
-	int			yo;
-	int			mx;
-	int			my;
-	int			px;
-	int			py;
-	char		**map;
-	char		**pz;
-}				t_filler;
-
-/*
-** filler.c
-*/
-void	filler(t_filler *f);
-
-/*
-** main.c
-*/
-int		main(int ac, char **av);
-
-/*
-** utils.c
-*/
-void	get_init_coords(t_filler *f);
-
-#endif
+	(void)f;
+}
