@@ -29,6 +29,7 @@ typedef struct	s_filler
 /*
 ** filler.c
 */
+int		is_valid(t_filler *f);
 void	filler(t_filler *f);
 
 /*
@@ -39,6 +40,8 @@ int		main(int ac, char **av);
 /*
 ** utils.c
 */
+void	get_coords(t_filler *f, char c);
 void	get_init_coords(t_filler *f);
+void	put_first_piece(t_filler *f);
 
 #endif

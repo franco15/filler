@@ -42,8 +42,6 @@ static void	create_map(t_filler *f)
 		get_next_line(0, &line);
 		f->pz[j++] = ft_strdup(line);
 	}
-	// for (i = 0; f->pz[i]; i++)
-		// ft_printf_fd(2, "[%s]\n", f->pz[i]);
 }
 
 static void	set_players(t_filler *f)
@@ -61,21 +59,25 @@ static void	set_players(t_filler *f)
 	i++;
 	f->mx = ft_atoi(&line[i]);
 	get_init_coords(f);
-	// ft_printf_fd(2, "\n[%d    %d]\n", f->mx, f->my);
 }
 
 int		main(int ac, char **av)
 {
+	int			i;
 	char		*line;
 	t_filler	f;
 
 	(void)ac;
 	(void)av;
 	set_players(&f);
+	i = 0;
 	while (get_next_line(0, &line) > 0)
 	{
 		create_map(&f);
-		filler(&f);
+		if (i++ > 0)
+			filler(&f);
+		else
+			put_first_piece(&f);
 		// for (int i = 0; f.map[i]; i++)
 		// 	ft_printf_fd(2, "[%s][%d]\n", f.map[i], i);
 		// ft_printf_fd(2, "smn\n");

@@ -18,7 +18,18 @@
 ** map02 p1 [31, 30] p2 [71, 70]
 */
 
-void	filler(t_filler *f)
+int		is_valid(t_filler *f)
 {
 	(void)f;
+	return (0);
+}
+
+void	filler(t_filler *f)
+{
+	get_coords(f, f->yo == 1 ? 'o' : 'x');
+	ft_printf_fd(2, "\n%d | %d\n", f->px, f->py);
+	// while (map[py][px])
+	// {
+	// 	is
+	// }
 }
