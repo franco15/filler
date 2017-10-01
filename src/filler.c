@@ -33,3 +33,27 @@ void	filler(t_filler *f)
 	// 	is
 	// }
 }
+
+// static int		ft_strategy_up_left(t_info *info)
+// {
+// 	int		i;
+// 	int		j;
+
+// 	i = 0;
+// 	while (i < info->mapy)
+// 	{
+// 		j = 0;
+// 		while (j < info->mapx)
+// 		{
+// 			if (ft_try_piece(info, i, j) == 1)
+// 			{
+// 				info->x = j;
+// 				info->y = i;
+// 				return (1);
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
