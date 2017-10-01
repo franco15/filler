@@ -22,6 +22,9 @@ typedef struct	s_filler
 	int			my;
 	int			px;
 	int			py;
+	int			rx;
+	int			ry;
+	int			where_to;
 	char		**map;
 	char		**pz;
 }				t_filler;
@@ -43,5 +46,13 @@ int		main(int ac, char **av);
 void	get_coords(t_filler *f, char c);
 void	get_init_coords(t_filler *f);
 void	put_first_piece(t_filler *f);
+
+/*
+** where_to_question_mark.c
+*/
+void	to_nw(t_filler *f);
+void	to_ne(t_filler *f);
+void	to_sw(t_filler *f);
+void	to_se(t_filler *f);
 
 #endif

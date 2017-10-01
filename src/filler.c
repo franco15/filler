@@ -18,15 +18,28 @@
 ** map02 p1 [31, 30] p2 [71, 70]
 */
 
-int		is_valid(t_filler *f)
+// int		is_valid(t_filler *f)
+// {
+// 	(void)f;
+// 	return (0);
+// }
+
+static int	where_to_question_mark(t_filler *f)
 {
-	(void)f;
-	return (0);
+	if (f->where_to == 0)
+		return (to_nw(f));
+	else if (f->where_to == 1)
+		return (to_ne(f));
+	else if (f->where_to == 2)
+		return (to_sw(f));
+	else if (f->where_to == 3)
+		return (to_se(f));
 }
 
 void	filler(t_filler *f)
 {
 	get_coords(f, f->yo == 1 ? 'o' : 'x');
+	if (where_to)
 	ft_printf_fd(2, "\n%d | %d\n", f->px, f->py);
 	// while (map[py][px])
 	// {

@@ -11,7 +11,7 @@ INC_DIR = ./inc/
 LIBFT_DIR = ./libft/
 
 # Source files and object files
-SRC_FILES = filler.c main.c utils.c
+SRC_FILES = filler.c main.c utils.c where_to_question_mark.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # Paths
