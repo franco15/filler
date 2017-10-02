@@ -12,70 +12,40 @@
 
 #include "filler.h"
 
-void	get_coords(t_filler *f, char c)
+void	get_coords(t_filler *f)
 {
 	int	x;
 	int	y;
 
-	y = 0;
-	while (f->map[y])
-	{
-		x = 0;
-		while (f->map[y][x])
-		{
-			if (f->map[y][x] == c)
-			{
-				f->px = x;
-				f->py = y;
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-void	get_init_coords(t_filler *f)
-{
-	if (f->mx == 17)
-	{
-		f->px = f->yo == 1 ? 2 : 15;
-		f->py = f->yo == 1 ? 8 : 13;
-	}
-	else if (f->mx == 40)
-	{
-		f->px = f->yo == 1 ? 4 : 33;
-		f->py = f->yo == 1 ? 4 : 20;
-	}
-	else if (f->mx == 99)
-	{
-		f->px = f->yo == 1 ? 31 : 71;
-		f->py = f->yo == 1 ? 30 : 70;
-	}
-}
-
-void	put_first_piece(t_filler *f)
-{
-	int	x;
-	int	y;
-
-	y = -1;
 	x = 0;
-	if (f->pz[y + 1][x] == '*')
+	// ft_printf_fd(2, "\n%d | %d\n", c, 'O');
+	while (x < f->mx)
 	{
-		ft_printf_fd(1, "%d, %d\n", f->py, f->px);
-		return ;
-	}
-	while (f->pz[++y])
-	{
-		x = -1;
-		while (f->pz[y][++x])
+		y = 0;
+		while (y < f->my)
 		{
-			if (is_valid(f))
+			if (f->map[x][y] == f->moi)
 			{
-				ft_printf_fd(1, "%d, %d\n", f->py, f->px);
+				f->cx = x;
+				f->cy = y;
+				ft_printf_fd(2, "\n%d %d\n", x, y);
 				return ;
 			}
+			y++;
 		}
+		x++;
 	}
+}
+
+void	del_map(t_filler *f)
+{
+	int	i;
+
+	i = 0;
+	while (i < f->mx)
+		ft_bzero(f->map[i++], f->my);
+	i = 0;
+	while (i < f->pzx)
+		ft_memdel((void**)&f->pz[i++]);
+	ft_memdel((void**)f->pz);
 }

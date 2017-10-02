@@ -12,38 +12,44 @@
 
 #include "filler.h"
 
-static void	blank_map(t_filler *f)
+static void	fill_map(t_filler *f)
 {
-	ft_arrdel((void**)f->map);
-	ft_arrdel((void**)f->pz);
+	int		i;
+	char	*line;
+
+	i = 0;
+	// ft_printf_fd(2, "\n%d | %d\n", f->mx, f->my);
+	while (i < f->mx)
+	{
+		get_next_line(0, &line);
+		ft_strcpy(f->map[i++], &line[4]);
+	}
+	get_next_line(0, &line);
+	f->pzx = ft_atoi(&line[6]);
+	f->pzy = ft_atoi(&line[8]);
+	f->pz = (char**)ft_memalloc(sizeof(char*) * f->pzx);
+	i = 0;
+	while (i < f->pzx)
+	{
+		f->pz[i] = (char*)ft_memalloc(sizeof(char) * f->pzy);
+		get_next_line(0, &line);
+		ft_strcpy(f->pz[i++], line);
+	}
+	f->ded = 0;
+	f->rx = 0;
+	f->ry = 0;
 }
 
 static void	create_map(t_filler *f)
 {
 	int		i;
-	int		j;
-	char	*line;
 
 	i = 0;
-	get_next_line(0, &line);
 	f->map = (char**)ft_memalloc(sizeof(char*) * f->my);
-	f->map[i++] = ft_strdup(&line[4]);
-	while (i < f->my)
-	{
-		get_next_line(0, &line);
-		f->map[i++] = ft_strdup(&line[4]);
-	}
-	get_next_line(0, &line);
-	i = ft_atoi(&line[6]);
-	f->pz = (char**)ft_memalloc(sizeof(char*) * (i + 1));
-	f->pzx = i;
-	j = 0;
-	while (i > j)
-	{
-		get_next_line(0, &line);
-		f->pz[j++] = ft_strdup(line);
-	}
-	f->pzy = ft_strlen(f->pz[0]);
+	while (i < f->mx)
+		f->map[i++] = (char*)ft_memalloc(sizeof(char*) * f->my);
+	f->cx = 0;
+	f->cy = 0;
 }
 
 static void	set_players(t_filler *f)
@@ -52,16 +58,16 @@ static void	set_players(t_filler *f)
 	char	*line;
 
 	get_next_line(0, &line);
-	f->moi = line[10] == '1' ? 1 : 2;
-	f->toi = f->moi == 1 ? 2 : 1;
+	f->moi = line[10] == '1' ? 'O' : 'X';
+	f->toi = f->moi == 'O' ? 'X' : 'O';
 	get_next_line(0, &line);
-	f->my = ft_atoi(&line[8]);
+	f->mx = ft_atoi(&line[8]);
 	i = 8;
 	while (ft_isdigit(line[i]))
 		i++;
 	i++;
-	f->mx = ft_atoi(&line[i]);
-	get_init_coords(f);
+	f->my = ft_atoi(&line[i]);
+	f->where_to = 0;
 }
 
 int		main(int ac, char **av)
@@ -72,19 +78,22 @@ int		main(int ac, char **av)
 
 	(void)ac;
 	(void)av;
-	set_players(&f);
 	i = 0;
+	set_players(&f);
+	create_map(&f);
 	while (get_next_line(0, &line) > 0)
 	{
-		create_map(&f);
-		if (i++ > 0)
-			filler(&f);
-		else
-			put_first_piece(&f);
-		// for (int i = 0; f.map[i]; i++)
-		// 	ft_printf_fd(2, "[%s][%d]\n", f.map[i], i);
+		// ft_printf_fd(2, "\nb4 create_map\n");
+		fill_map(&f);
+		ft_printf_fd(2, "\n");
+		// for (i = 0; i < f.mx; i++)
+		// 	ft_printf_fd(2, "%s\n", f.map[i]);
+		// ft_printf_fd(2, "\nb4 filler()\n");
+		filler(&f);
 		// ft_printf_fd(2, "smn\n");
-		blank_map(&f);
+		// ft_printf_fd(2, "\nb4 del_map\n");
+		del_map(&f);
+		// ft_printf_fd(2, "\nend turn\n");
 	}
 	return (0);
 }

@@ -27,6 +27,7 @@ typedef struct	s_filler
 	int			pzy;
 	int			rx;
 	int			ry;
+	int			ded;
 	int			where_to;
 	char		**map;
 	char		**pz;
@@ -35,7 +36,6 @@ typedef struct	s_filler
 /*
 ** filler.c
 */
-int		check_piece(t_filler *f, int i, int j)
 void	filler(t_filler *f);
 
 /*
@@ -44,18 +44,29 @@ void	filler(t_filler *f);
 int		main(int ac, char **av);
 
 /*
-** utils.c
+** to_ne.c
 */
-void	get_coords(t_filler *f, char c);
-void	get_init_coords(t_filler *f);
-void	put_first_piece(t_filler *f);
+int	to_ne(t_filler *f);
 
 /*
-** where_to_question_mark.c
+** to_nw.c
 */
-void	to_nw(t_filler *f);
-void	to_ne(t_filler *f);
-void	to_sw(t_filler *f);
-void	to_se(t_filler *f);
+int	to_nw(t_filler *f);
+
+/*
+** to_se.c
+*/
+int	to_sw(t_filler *f);
+
+/*
+** to_se.c
+*/
+int	to_se(t_filler *f);
+
+/*
+** utils.c
+*/
+void	get_coords(t_filler *f);
+void	del_map(t_filler *f);
 
 #endif

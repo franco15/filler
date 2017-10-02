@@ -18,48 +18,115 @@
 ** map02 p1 [31, 30] p2 [71, 70]
 */
 
-static int	is_valid(t_filler *f, int i, int j)
+static void	return_ex_and_why(t_filler *f)
 {
-	(void)f;
-	(void)i;
-	(void)j;
+	if (--f->where_to == 0)
+		f->where_to++;
+	else if (--f->where_to == 1)
+		f->where_to++;
+	else if (--f->where_to == 2)
+		f->where_to++;
+	else if (--f->where_to == 3)
+		f->where_to = 0;
+	if (f->ded == 1)
+	{
+		// ft_printf_fd(2, "\nded\n");
+		// ft_printf_fd(2, "%d %d\n", f->rx, f->ry);
+		ft_printf("0 0\n");
+		return ;
+	}
+	ft_printf_fd(1, "%d %d\n", f->rx, f->ry);
+}
+
+static int	where_to_question_mark_x(t_filler *f)
+{
+	if (f->where_to == 0)
+	{
+		f->where_to++;
+		if (to_nw(f))
+			return (1);
+	}
+	if (f->where_to == 1)
+	{
+		f->where_to++;
+		if (to_sw(f))
+			return (1);
+	}
+	if (f->where_to == 2)
+	{
+		f->where_to++;
+		if (to_se(f))
+			return (1);
+	}
+	if (f->where_to == 3)
+	{
+		f->where_to++;
+		if (to_ne(f))
+			return (1);
+	}
 	return (0);
 }
 
-int			check_piece(t_filler *f, int i, int j)
-{
-	if (f->where_to == 0 && (i + f->pzx < 0 || j + f->pzy < 0))
-		return (0);
-	if (f->where_to == 1 && (i + f->pzx < 0 || j + f->pzy < f->my))
-		return (0);
-	if (f->where_to == 2 && (i + f->pzx < f->mx || j + f->pzy < 0))
-		return (0);
-	if (f->where_to == 3 && (i + f->pzx < f->mx || j + f->pzy < f->my))
-		return (0);
-	else
-		return (is_valid(f, i, j));
-}
-
-static int	where_to_question_mark(t_filler *f)
+static int	where_to_question_mark_o(t_filler *f)
 {
 	if (f->where_to == 0)
-		return (to_nw(f));
+	{
+		// ft_printf_fd(2, "\n%d", f->where_to);
+		// f->where_to++;
+		if (to_ne(f))
+			return (1);
+	}
 	else if (f->where_to == 1)
-		return (to_ne(f));
+	{
+		// ft_printf_fd(2, "\n%d", f->where_to);
+		// f->where_to++;
+		if (to_se(f))
+			return (1);
+	}
 	else if (f->where_to == 2)
-		return (to_sw(f));
+	{
+		// ft_printf_fd(2, "\n%d", f->where_to);
+		// f->where_to++;
+		if (to_sw(f))
+			return (1);
+	}
 	else if (f->where_to == 3)
-		return (to_se(f));
+	{
+		// ft_printf_fd(2, "\n%d", f->where_to);
+		// f->where_to++;
+		if (to_nw(f))
+			return (1);
+	}
+	// ft_printf_fd(2, "\nquit\n");
+	return (0);
 }
 
 void	filler(t_filler *f)
 {
-	get_coords(f, f->moi == 1 ? 'o' : 'x');
-	if (!where_to_question_mark(f))
-		f->ded = 1;
-	ft_printf_fd(2, "\n%d | %d\n", f->px, f->py);
-	// while (map[py][px])
-	// {
-	// 	is
-	// }
+	static int	i;
+
+	i = 0;
+	// if (i++ > 0)
+	// 	get_coords(f, f->moi == 'O' ? 'o' : 'x');
+	// else
+	// ft_printf_fd(2, "\non filler() b4 get_coords\n");
+	get_coords(f);
+	// ft_printf_fd(2, "\nx = %d | y = %d\n", f->cx, f->cy);
+	if (f->moi == 'O')
+	{
+		if (!where_to_question_mark_o(f))
+		{
+			ft_printf_fd(2, "\ndeeeeeed\n");
+			f->ded = 1;
+		}
+	}
+	else
+	{
+		if (!where_to_question_mark_x(f))
+		{
+			ft_printf_fd(2, "\nquiiiiiit\n");
+			f->ded = 1;
+		}
+	}
+	return_ex_and_why(f);
 }

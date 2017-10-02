@@ -39,18 +39,16 @@ char	*ft_itoa_base(long long int n, int b);
 int		ft_atoi(char const *str);
 
 /*
-** fd.c
+** ft_printf_fd.c
 */
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char const *s, int fd);
-void	ft_putcharn_fd(int c, int n, int fd);
-void	ft_putnbr_fd(int n, int fd);
+void	ft_printfcolor_fd(int fd, const char *format, ...);
+void	ft_printf_fd(int fd, const char *format, ...);
 
 /*
 ** ft_printf.c
 */
-void	ft_printfcolor_fd(int fd, const char *format, ...);
-void	ft_printf_fd(int fd, const char *format, ...);
+void			ft_printfcolor(const char *format, ...);
+void			ft_printf(const char *format, ...);
 
 /*
 ** get_next_line.c
@@ -77,6 +75,21 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 */
 void	*ft_realloc(void *ptr, size_t size, size_t newsize);
 void	*ft_memmove(void *dst, const void *src, size_t len);
+
+/*
+** put_fd.c
+*/
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char const *s, int fd);
+void	ft_putcharn_fd(int c, int n, int fd);
+void	ft_putnbr_fd(int n, int fd);
+
+/*
+** put.c
+*/
+size_t	ft_putstr(char const *s);
+void	ft_putnbr(int nb);
+size_t	ft_putchar(char c);
 
 /*
 ** strings.c
