@@ -17,23 +17,24 @@ void	get_coords(t_filler *f)
 	int	x;
 	int	y;
 
-	x = 0;
+	x = -1;
 	// ft_printf_fd(2, "\n%d | %d\n", c, 'O');
-	while (x < f->mx)
+	while (++x < f->mx)
 	{
-		y = 0;
-		while (y < f->my)
+		y = -1;
+		while (++y < f->my)
 		{
+			ft_printf_fd(2, "\n%d %d\n", x, y);
 			if (f->map[x][y] == f->moi)
 			{
 				f->cx = x;
 				f->cy = y;
-				ft_printf_fd(2, "\n%d %d\n", x, y);
+				ft_printf_fd(2, "%d %d %c\n", x, y, f->map[x][y]);
 				return ;
 			}
-			y++;
+			// y++;
 		}
-		x++;
+		// x++;
 	}
 }
 
