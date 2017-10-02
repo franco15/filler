@@ -17,25 +17,31 @@ void	get_coords(t_filler *f)
 	int	x;
 	int	y;
 
-	x = -1;
+	x = 0;
 	// ft_printf_fd(2, "\n%d | %d\n", c, 'O');
-	while (++x < f->mx)
+	while (x < f->mx)
 	{
-		y = -1;
-		while (++y < f->my)
+		y = 0;
+		while (y < f->my)
 		{
 			// ft_printf_fd(2, "\n%d %d\n", x, y);
 			if (f->map[x][y] == f->moi)
 			{
+				ft_printf_fd(2, "%d %d %c\n", x, y, f->map[x][y]);
 				f->cx = x;
 				f->cy = y;
-				// ft_printf_fd(2, "%d %d %c\n", x, y, f->map[x][y]);
 				return ;
 			}
-			// y++;
+			// if (f->map[x][y] == f->toi)
+			// {
+			// 	f->opposx = x;
+			// 	f->opposy = y;
+			// }
+			y++;
 		}
-		// x++;
+		x++;
 	}
+	// f->where_to = f->opposx > f->cx ? 1 : 0;
 }
 
 void	del_map(t_filler *f)

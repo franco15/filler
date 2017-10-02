@@ -28,6 +28,8 @@ typedef struct	s_filler
 	int			rx;
 	int			ry;
 	int			ded;
+	// int			opposx;
+	// int			opposy;
 	int			where_to;
 	char		**map;
 	char		**pz;
