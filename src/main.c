@@ -12,19 +12,16 @@
 
 #include "filler.h"
 
-static void	fill_map(t_filler *f)
+static void	get_pz(t_filler *f)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
 	// ft_printf_fd(2, "\n%d | %d\n", f->mx, f->my);
-	while (i < f->mx)
-	{
-		get_next_line(0, &line);
-		ft_strcpy(f->map[i++], &line[4]);
-	}
 	get_next_line(0, &line);
+	i = ft_strlen(line);
+	// ft_printf_fd(2, "[%s] | %c | %c\n", line, line[6], line[8]);
 	f->pzx = ft_atoi(&line[6]);
 	i = 6;
 	while (ft_isdigit(line[i]))
@@ -32,30 +29,34 @@ static void	fill_map(t_filler *f)
 	i++;
 	f->pzy = ft_atoi(&line[i]);
 	i = 0;
+	if (!f->pz)
+		f->pz = (char**)ft_memalloc(sizeof(char*) * f->pzx);
 	while (i < f->pzx)
 	{
-		f->pz[i] = (char*)ft_memalloc(sizeof(char) * f->my);
 		get_next_line(0, &line);
-		ft_strcpy(f->pz[i++], line);
+		f->pz[i++] = ft_strdup(line);
 	}
-	// f->rx = 0;
-	// f->ry = 0;
+	// ft_printf_fd(2, "\n%d | %d\n", f->pzx, f->pzy);
 }
 
 static void	create_map(t_filler *f)
 {
 	int		i;
+	char	*line;
 
 	i = 0;
-	f->map = (char**)ft_memalloc(sizeof(char*) * f->mx);
-	f->pz = (char**)ft_memalloc(sizeof(char*) * f->mx);
+	get_next_line(0, &line);
+	if (!f->map)
+		f->map = (char**)ft_memalloc(sizeof(char*) * f->mx);
 	while (i < f->mx)
-		f->map[i++] = (char*)ft_memalloc(sizeof(char) * f->my);
-	f->cx = 0;
-	f->cy = 0;
-	f->ded = 0;
+	{
+		get_next_line(0, &line);
+		f->map[i++] = ft_strdup(&line[4]);
+	}
+	get_pz(f);
 	f->rx = 0;
 	f->ry = 0;
+	f->ded = 0;
 }
 
 static void	set_players(t_filler *f)
@@ -78,30 +79,33 @@ static void	set_players(t_filler *f)
 
 int		main(int ac, char **av)
 {
-	// int			i;
-	char		*line;
+	int			i;
+	// char		*line;
 	t_filler	f;
 
 	(void)ac;
 	(void)av;
-	// i = 0;
+	i = 0;
 	set_players(&f);
-	create_map(&f);
-	while (get_next_line(0, &line) > 0)
+	// create_map(&f);
+	while (1)
 	{
 		// ft_printf_fd(2, "\nb4 create_map\n");
-		fill_map(&f);
+		create_map(&f);
+		sleep(1);
 		// ft_printf_fd(2, "\n\n\n");
-		// for (i = 0; i < f.mx; i++)
-		// 	ft_printf_fd(2, "%s\n", f.map[i]);
+		// for (i = 0; i < f.pzx; i++)
+			// ft_printf_fd(2, "%s\n", f.pz[i]);
 		// ft_printf_fd(2, "\nb4 filler()\n");
 		filler(&f);
+		if (f.ded == 1)
+			break ;
 		// ft_printf_fd(2, "smn\n");
 		// ft_printf_fd(2, "\nb4 del_map\n");
-		del_map(&f);
+		// del_map(&f);
 		// ft_printf_fd(2, "\nend turn\n");
 	}
 	ft_memdel((void**)f.map);
-	ft_memdel((void**)f.pz);
+	// ft_memdel((void**)f.pz);
 	return (0);
 }

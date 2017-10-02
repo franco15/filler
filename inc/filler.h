@@ -17,8 +17,8 @@
 
 typedef struct	s_filler
 {
-	int			moi;
-	int			toi;
+	char		moi;
+	char		toi;
 	int			cx;
 	int			cy;
 	int			mx;
@@ -28,8 +28,6 @@ typedef struct	s_filler
 	int			rx;
 	int			ry;
 	int			ded;
-	// int			opposx;
-	// int			opposy;
 	int			where_to;
 	char		**map;
 	char		**pz;
@@ -46,29 +44,18 @@ void	filler(t_filler *f);
 int		main(int ac, char **av);
 
 /*
-** to_ne.c
-*/
-int	to_ne(t_filler *f);
-
-/*
-** to_nw.c
-*/
-int	to_nw(t_filler *f);
-
-/*
-** to_se.c
-*/
-int	to_sw(t_filler *f);
-
-/*
-** to_se.c
-*/
-int	to_se(t_filler *f);
-
-/*
 ** utils.c
 */
-void	get_coords(t_filler *f);
+// void	get_coords(t_filler *f);
 void	del_map(t_filler *f);
+int		check_piece(t_filler *f, int i, int j);
+
+/*
+**
+*/
+int		to_ne(t_filler *f);
+int		to_nw(t_filler *f);
+int		to_sw(t_filler *f);
+int		to_se(t_filler *f);
 
 #endif
