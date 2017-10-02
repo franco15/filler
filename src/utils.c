@@ -24,12 +24,12 @@ void	get_coords(t_filler *f)
 		y = -1;
 		while (++y < f->my)
 		{
-			ft_printf_fd(2, "\n%d %d\n", x, y);
+			// ft_printf_fd(2, "\n%d %d\n", x, y);
 			if (f->map[x][y] == f->moi)
 			{
 				f->cx = x;
 				f->cy = y;
-				ft_printf_fd(2, "%d %d %c\n", x, y, f->map[x][y]);
+				// ft_printf_fd(2, "%d %d %c\n", x, y, f->map[x][y]);
 				return ;
 			}
 			// y++;
@@ -48,5 +48,5 @@ void	del_map(t_filler *f)
 	i = 0;
 	while (i < f->pzx)
 		ft_memdel((void**)&f->pz[i++]);
-	ft_memdel((void**)f->pz);
+	// ft_memdel((void**)f->pz);
 }

@@ -25,7 +25,7 @@ static int	is_valid_ne(t_filler *f, int i, int j)
 		y = -1;
 		while (++y < f->pzy)
 		{
-			ft_printf_fd(2, "%c", f->map[i + x][j + y]);
+			// ft_printf_fd(2, "%c", f->map[i + x][j + y]);
 			if (!f->map[x + i][y + j] && f->pz[x][y] == '.')
 				continue ;
 			if ((f->map[x + i][y + j] == f->moi ||
@@ -36,7 +36,7 @@ static int	is_valid_ne(t_filler *f, int i, int j)
 				return (0);
 		}
 	}
-	ft_printf_fd(2, "piece %d i %d j %d\n", piece, i, j);
+	// ft_printf_fd(2, "piece %d i %d j %d\n", piece, i, j);
 	return (piece == 1 ? 1 : 0);
 }
 

@@ -35,7 +35,7 @@ static int	is_valid_nw(t_filler *f, int i, int j)
 				return (0);
 		}
 	}
-	ft_printf_fd(2, "piece %d\n", piece);
+	// ft_printf_fd(2, "piece %d\n", piece);
 	return (piece == 1 ? 1 : 0);
 }
 

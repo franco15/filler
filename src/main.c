@@ -27,7 +27,6 @@ static void	fill_map(t_filler *f)
 	get_next_line(0, &line);
 	f->pzx = ft_atoi(&line[6]);
 	f->pzy = ft_atoi(&line[8]);
-	f->pz = (char**)ft_memalloc(sizeof(char*) * f->pzx);
 	i = 0;
 	while (i < f->pzx)
 	{
@@ -45,7 +44,8 @@ static void	create_map(t_filler *f)
 	int		i;
 
 	i = 0;
-	f->map = (char**)ft_memalloc(sizeof(char*) * f->my);
+	f->map = (char**)ft_memalloc(sizeof(char*) * f->mx);
+	f->pz = (char**)ft_memalloc(sizeof(char*) * f->mx);
 	while (i < f->mx)
 		f->map[i++] = (char*)ft_memalloc(sizeof(char*) * f->my);
 	f->cx = 0;
@@ -85,7 +85,7 @@ int		main(int ac, char **av)
 	{
 		// ft_printf_fd(2, "\nb4 create_map\n");
 		fill_map(&f);
-		ft_printf_fd(2, "\n");
+		// ft_printf_fd(2, "\n\n\n");
 		// for (i = 0; i < f.mx; i++)
 		// 	ft_printf_fd(2, "%s\n", f.map[i]);
 		// ft_printf_fd(2, "\nb4 filler()\n");
@@ -95,5 +95,7 @@ int		main(int ac, char **av)
 		del_map(&f);
 		// ft_printf_fd(2, "\nend turn\n");
 	}
+	ft_memdel((void**)f.map);
+	ft_memdel((void**)f.pz);
 	return (0);
 }

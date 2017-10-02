@@ -20,13 +20,13 @@
 
 static void	return_ex_and_why(t_filler *f)
 {
-	if (--f->where_to == 0)
+	if (f->where_to - 1 == 0)
 		f->where_to++;
-	else if (--f->where_to == 1)
+	else if (f->where_to - 1 == 1)
 		f->where_to++;
-	else if (--f->where_to == 2)
+	else if (f->where_to - 1 == 2)
 		f->where_to++;
-	else if (--f->where_to == 3)
+	else if (f->where_to - 1 == 3)
 		f->where_to = 0;
 	if (f->ded == 1)
 	{
@@ -35,7 +35,7 @@ static void	return_ex_and_why(t_filler *f)
 		ft_printf("0 0\n");
 		return ;
 	}
-	ft_printf_fd(1, "%d %d\n", f->rx, f->ry);
+	ft_printf("%d %d\n", f->rx, f->ry);
 }
 
 static int	where_to_question_mark_x(t_filler *f)
@@ -72,28 +72,28 @@ static int	where_to_question_mark_o(t_filler *f)
 	if (f->where_to == 0)
 	{
 		// ft_printf_fd(2, "\n%d", f->where_to);
-		// f->where_to++;
+		f->where_to++;
 		if (to_ne(f))
 			return (1);
 	}
 	else if (f->where_to == 1)
 	{
 		// ft_printf_fd(2, "\n%d", f->where_to);
-		// f->where_to++;
+		f->where_to++;
 		if (to_se(f))
 			return (1);
 	}
 	else if (f->where_to == 2)
 	{
 		// ft_printf_fd(2, "\n%d", f->where_to);
-		// f->where_to++;
+		f->where_to++;
 		if (to_sw(f))
 			return (1);
 	}
 	else if (f->where_to == 3)
 	{
 		// ft_printf_fd(2, "\n%d", f->where_to);
-		// f->where_to++;
+		f->where_to++;
 		if (to_nw(f))
 			return (1);
 	}
@@ -116,7 +116,7 @@ void	filler(t_filler *f)
 	{
 		if (!where_to_question_mark_o(f))
 		{
-			ft_printf_fd(2, "\ndeeeeeed\n");
+			// ft_printf_fd(2, "\ndeeeeeed\n");
 			f->ded = 1;
 		}
 	}
@@ -124,7 +124,7 @@ void	filler(t_filler *f)
 	{
 		if (!where_to_question_mark_x(f))
 		{
-			ft_printf_fd(2, "\nquiiiiiit\n");
+			// ft_printf_fd(2, "\nquiiiiiit\n");
 			f->ded = 1;
 		}
 	}
