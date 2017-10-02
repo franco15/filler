@@ -39,26 +39,26 @@ static int	is_valid_nw(t_filler *f, int i, int j)
 	return (piece == 1 ? 1 : 0);
 }
 
-// static int	check_piece_nw(t_filler *f, int i, int j)
-// {
-// 	if (i + f->pzx < 0 || j + f->pzy < 0)
-// 		return (0);
-// 	else
-// 		return (is_valid_nw(f, i, j));
-// }
+static int	check_piece_nw(t_filler *f, int i, int j)
+{
+	if (i + f->pzx < 0 || j + f->pzy < 0)
+		return (0);
+	else
+		return (is_valid_nw(f, i, j));
+}
 
 int	to_nw(t_filler *f)
 {
 	int	i;
 	int	j;
 
-	i = f->cx;
+	i = f->mx;
 	while (i >= 0)
 	{
-		j = f->cy;
+		j = f->my;
 		while (j >= 0)
 		{
-			if (is_valid_nw(f, i, j))
+			if (check_piece_nw(f, i, j))
 			{
 				f->rx = i;
 				f->ry = j;
