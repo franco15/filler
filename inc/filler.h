@@ -17,11 +17,14 @@
 
 typedef struct	s_filler
 {
-	int			yo;
+	int			moi;
+	int			toi;
+	int			cx;
+	int			cy;
 	int			mx;
 	int			my;
-	int			px;
-	int			py;
+	int			pzx;
+	int			pzy;
 	int			rx;
 	int			ry;
 	int			where_to;
@@ -32,7 +35,7 @@ typedef struct	s_filler
 /*
 ** filler.c
 */
-int		is_valid(t_filler *f);
+int		check_piece(t_filler *f, int i, int j)
 void	filler(t_filler *f);
 
 /*

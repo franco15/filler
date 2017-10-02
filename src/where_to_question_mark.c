@@ -12,95 +12,99 @@
 
 #include "ft_select.h"
 
-void	to_nw(t_filler *f)
+int	to_nw(t_filler *f)
 {
 	int	i;
 	int	j;
 
-	i = f->px;
+	i = f->cx;
 	while (i >= 0)
 	{
-		j = f->py;
+		j = f->cy;
 		while (j >= 0)
 		{
 			if (check_piece(f, i, j))
 			{
 				f->rx = i;
 				f->ry = j;
-				return ;
+				return (1);
 			}
 			j--;
 		}
 		i--;
 	}
+	return (0);
 }
 
-void	to_ne(t_filler *f)
+int	to_ne(t_filler *f)
 {
 	int	i;
 	int	j;
 
-	i = f->px;
+	i = f->cx;
 	while (i >= 0)
 	{
-		j = f->py;
+		j = f->cy;
 		while (j >= 0)
 		{
 			if (check_piece(f, i, j))
 			{
 				f->rx = i;
 				f->ry = j;
-				return ;
+				return (1);
 			}
 			j++;
 		}
 		i--;
 	}
+	return (0);
 }
 
-void	to_sw(t_filler *f)
+int	to_sw(t_filler *f)
 {
 	int	i;
 	int	j;
 
-	i = f->px;
+	i = f->cx;
 	while (i >= 0)
 	{
-		j = f->py;
+		j = f->cy;
 		while (j >= 0)
 		{
 			if (check_piece(f, i, j))
 			{
 				f->rx = i;
 				f->ry = j;
-				return ;
+				return (1);
 			}
 			j--;
 		}
 		i++;
 	}
+	return (0);
 }
 
-void	to_se(t_filler *f)
+int	to_se(t_filler *f)
 {
 	int	i;
 	int	j;
 
-	i = f->px;
+	i = f->cx;
 	while (i >= 0)
 	{
-		j = f->py;
+		j = f->cy;
 		while (j >= 0)
 		{
 			if (check_piece(f, i, j))
 			{
 				f->rx = i;
 				f->ry = j;
-				return ;
+				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
+	return (0);
 
 }

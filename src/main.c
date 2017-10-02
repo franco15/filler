@@ -36,12 +36,14 @@ static void	create_map(t_filler *f)
 	get_next_line(0, &line);
 	i = ft_atoi(&line[6]);
 	f->pz = (char**)ft_memalloc(sizeof(char*) * (i + 1));
+	f->pzx = i;
 	j = 0;
 	while (i > j)
 	{
 		get_next_line(0, &line);
 		f->pz[j++] = ft_strdup(line);
 	}
+	f->pzy = ft_strlen(f->pz[0]);
 }
 
 static void	set_players(t_filler *f)
@@ -50,7 +52,8 @@ static void	set_players(t_filler *f)
 	char	*line;
 
 	get_next_line(0, &line);
-	f->yo = line[10] == '1' ? 1 : 2;
+	f->moi = line[10] == '1' ? 1 : 2;
+	f->toi = f->moi == 1 ? 2 : 1;
 	get_next_line(0, &line);
 	f->my = ft_atoi(&line[8]);
 	i = 8;
