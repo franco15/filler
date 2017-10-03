@@ -41,7 +41,7 @@ void	filler(t_filler *f);
 /*
 ** main.c
 */
-int		main(int ac, char **av);
+int		main(void);
 
 /*
 ** utils.c
