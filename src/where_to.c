@@ -17,7 +17,7 @@ int	to_ne(t_filler *f)
 	int	i;
 	int	j;
 
-	i = f->mx - 1;
+	i = f->mx;
 	while (i + f->pzx > 0)
 	{
 		j = 0;
@@ -25,8 +25,6 @@ int	to_ne(t_filler *f)
 		{
 			if (check_piece(f, i, j) == 1)
 			{
-				// ft_printf_fd(2, "\nsmn\n");
-				// ft_printf_fd(2, "%d %d\n", i, j);
 				f->rx = i;
 				f->ry = j;
 				return (1);
@@ -43,16 +41,14 @@ int	to_nw(t_filler *f)
 	int	i;
 	int	j;
 
-	i = f->mx - 1;
+	i = f->mx;
 	while (i + f->pzx > 0)
 	{
-		j = f->my - 1;
+		j = f->my;
 		while (j + f->pzy > 0)
 		{
 			if (check_piece(f, i, j) == 1)
 			{
-				// ft_printf_fd(2, "\nsmn\n");
-				// ft_printf_fd(2, "%d %d\n", i, j);
 				f->rx = i;
 				f->ry = j;
 				return (1);
@@ -77,8 +73,6 @@ int	to_se(t_filler *f)
 		{
 			if (check_piece(f, i, j) == 1)
 			{
-				// ft_printf_fd(2, "\nsmn\n");
-				// ft_printf_fd(2, "%d %d\n", i, j);
 				f->rx = i;
 				f->ry = j;
 				return (1);
@@ -99,13 +93,11 @@ int	to_sw(t_filler *f)
 	i = 0;
 	while (i < f->mx)
 	{
-		j = f->my - 1;
-		while (j > 0)
+		j = f->my;
+		while (j + f->pzy > 0)
 		{
 			if (check_piece(f, i, j) == 1)
 			{
-				// ft_printf_fd(2, "\nsmn\n");
-				// ft_printf_fd(2, "%d %d\n", i, j);
 				f->rx = i;
 				f->ry = j;
 				return (1);

@@ -30,37 +30,29 @@ static void	return_ex_and_why(t_filler *f)
 		f->where_to = 0;
 	if (f->ded == 1)
 	{
-		ft_printf_fd(2, "ded %d %d\n", f->rx, f->ry);
 		ft_printf("0 0\n");
 		return ;
 	}
 	ft_printf_fd(1, "%d %d\n", f->rx, f->ry);
 }
 
-static void	where_to_question_mark(t_filler *f)
+static int	where_to_question_mark(t_filler *f)
 {
-	ft_printf_fd(2, "%d\n", f->where_to);
 	if (f->where_to == 0)
-		to_se(f);
+		return (to_se(f));
 	else if (f->where_to == 1)
-		to_nw(f);
+		return (to_nw(f));
 	else if (f->where_to == 2)
-		to_sw(f);
+		return (to_sw(f));
 	else if (f->where_to == 3)
-		to_ne(f);
+		return (to_ne(f));
+	else
+		return (0);
 }
 
 void	filler(t_filler *f)
 {
-	//static int	i;
-
-	//i = 0;
-	// if (i++ > 0)
-	// 	get_coords(f, f->moi == 'O' ? 'o' : 'x');
-	// else
-	// ft_printf_fd(2, "\non filler() b4 get_coords\n");
-	// get_coords(f);
-	// ft_printf_fd(2, "\nx = %d | y = %d\n", f->cx, f->cy);
-	where_to_question_mark(f);
+	if (!where_to_question_mark(f))
+		f->ded = 1;
 	return_ex_and_why(f);
 }

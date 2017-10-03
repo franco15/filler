@@ -65,31 +65,31 @@ static void	map_coords(t_filler *f, char *line)
 		i++;
 	i++;
 	f->my = ft_atoi(&line[i]);
-	f->where_to = f->moi == 'O' ? 0 : 1;
 }
 
 int		main(void)
 {
 	char		*line;
-	t_filler	f;
+	t_filler	*f;
 
-	// if (!(f = (t_filler*)ft_memalloc(sizeof(t_filler))))
-	// 	return (-1);
+	if (!(f = (t_filler*)ft_memalloc(sizeof(t_filler))))
+		return (-1);
 	get_next_line(0, &line);
-	f.moi = line[10] == '1' ? 'O' : 'X';
-	f.toi = f.moi == 'O' ? 'X' : 'O';
+	f->moi = line[10] == '1' ? 'O' : 'X';
+	f->toi = f->moi == 'O' ? 'X' : 'O';
+	f->where_to = f->moi == 'O' ? 0 : 1;
 	while (1)
 	{
 		get_next_line(0, &line);
-		map_coords(&f, line);
-		create_map(&f);
-		sleep(1);
-		filler(&f);
-		if (f.ded == 1)
+		map_coords(f, line);
+		create_map(f);
+		filler(f);
+		del_map(f);
+		if (f->ded == 1)
 			break ;
-		// del_map(&f);
 	}
-	ft_memdel((void**)f.map);
-	// ft_memdel((void**)f.pz);
+	// ft_memdel((void**)f->map);
+	// ft_memdel((void**)f->pz);
+	// ft_memdel((void**)&f);
 	return (0);
 }
