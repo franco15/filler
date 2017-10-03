@@ -84,9 +84,11 @@ int		main(void)
 		map_coords(f, line);
 		create_map(f);
 		filler(f);
-		// del_map(f);
+		del_map(f);
 		if (f->ded == 1)
-			break ;
+		{
+			return (0);
+		}
 	}
 	// ft_memdel((void**)f->map);
 	// ft_memdel((void**)f->pz);
