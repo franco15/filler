@@ -25,19 +25,19 @@ static int	is_valid(t_filler *f, int i, int j)
 		y = -1;
 		while (++y < f->pzy)
 		{
-			if ((x + i > f->mx || y + j > f->my) && f->pz[x][y] == '*')
-				return (0);
-			else if ((x + i > f->mx || y + j > f->my) && f->pz[x][y] == '.')
-				continue ;
-			else if ((f->map[x + i][y + j] == f->moi ||
+			// if ((x + i > f->mx || y + j > f->my) && f->pz[x][y] == '*')
+			// 	return (0);
+			// else if ((x + i > f->mx || y + j > f->my) && f->pz[x][y] == '.')
+			// 	continue ;
+			if ((f->map[x + i][y + j] == f->moi ||
 			f->map[x + i][y + j] == f->moi + 32) && f->pz[x][y] == '*')
-				piece += 1;
+				piece++;
 			else if ((f->map[x + i][y + j] == f->toi ||
 			f->map[x + i][y + j] == f->toi + 32) && f->pz[x][y] == '*')
 				return (0);
 		}
 	}
-	return (piece);
+	return (piece == 1 ? 1 : 0);
 }
 
 int	check_piece(t_filler *f, int i, int j)
@@ -60,4 +60,32 @@ void	del_map(t_filler *f)
 	i = 0;
 	while (i < f->pzx)
 		ft_memdel((void**)&f->pz[i++]);
+}
+
+void	get_coords(t_filler *f)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(i < f->mx)
+	{
+		j = 0;
+		while (j < f->my)
+		{
+			if (f->map[i][j] == f->moi || f->map[i][j] == f->moi + 32)
+			{
+				f->cx = i;
+				f->cy = i;
+			}
+			if (f->map[i][j] == f->toi || f->map[i][j] == f->toi + 32)
+			{
+				f->ox = i;
+				f->oy = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	f->where_to = f->cx > f->ox ? 1 : 0;
 }

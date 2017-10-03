@@ -21,6 +21,8 @@ typedef struct	s_filler
 	char		toi;
 	int			cx;
 	int			cy;
+	int			ox;
+	int			oy;
 	int			mx;
 	int			my;
 	int			pzx;
@@ -49,6 +51,7 @@ int		main(void);
 // void	get_coords(t_filler *f);
 void	del_map(t_filler *f);
 int		check_piece(t_filler *f, int i, int j);
+void	get_coords(t_filler *f);
 
 /*
 **

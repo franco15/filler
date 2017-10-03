@@ -50,6 +50,8 @@ static void	create_map(t_filler *f)
 		f->map[i++] = ft_strdup(&line[4]);
 	}
 	get_pz(f);
+	if (f->cx == 0 && f->cy == 0 && f->ox == 0 && f->oy == 0)
+		get_coords(f);
 	// f->rx = 0;
 	// f->ry = 0;
 	// f->ded = 0;
@@ -77,7 +79,11 @@ int		main(void)
 	get_next_line(0, &line);
 	f->moi = line[10] == '1' ? 'O' : 'X';
 	f->toi = f->moi == 'O' ? 'X' : 'O';
-	f->where_to = f->moi == 'O' ? 0 : 1;
+	// f->where_to = f->moi == 'O' ? 0 : 1;
+	// f->cx = 0;
+	// f->cy = 0;
+	// f->ox = 0;
+	// f->oy = 0;
 	while (1)
 	{
 		get_next_line(0, &line);
