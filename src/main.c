@@ -50,9 +50,9 @@ static void	create_map(t_filler *f)
 		f->map[i++] = ft_strdup(&line[4]);
 	}
 	get_pz(f);
-	f->rx = 0;
-	f->ry = 0;
-	f->ded = 0;
+	// f->rx = 0;
+	// f->ry = 0;
+	// f->ded = 0;
 }
 
 static void	map_coords(t_filler *f, char *line)
@@ -84,7 +84,7 @@ int		main(void)
 		map_coords(f, line);
 		create_map(f);
 		filler(f);
-		del_map(f);
+		// del_map(f);
 		if (f->ded == 1)
 			break ;
 	}

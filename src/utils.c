@@ -18,16 +18,16 @@ static int	is_valid(t_filler *f, int i, int j)
 	int	y;
 	int	piece;
 
-	x = 0;
+	x = -1;
 	piece = 0;
-	while (x < f->pzx)
+	while (++x < f->pzx)
 	{
-		y = 0;
-		while (y < f->pzy)
+		y = -1;
+		while (++y < f->pzy)
 		{
-			if (!f->map[x + i][y + j] && f->pz[x][y] == '*')
+			if ((x + i > f->mx || y + j > f->my) && f->pz[x][y] == '*')
 				return (0);
-			else if (!f->map[x + i][y + j] && f->pz[x][y] == '.')
+			else if ((x + i > f->mx || y + j > f->my) && f->pz[x][y] == '.')
 				continue ;
 			else if ((f->map[x + i][y + j] == f->moi ||
 			f->map[x + i][y + j] == f->moi + 32) && f->pz[x][y] == '*')
@@ -35,9 +35,7 @@ static int	is_valid(t_filler *f, int i, int j)
 			else if ((f->map[x + i][y + j] == f->toi ||
 			f->map[x + i][y + j] == f->toi + 32) && f->pz[x][y] == '*')
 				return (0);
-			y++;
 		}
-		x++;
 	}
 	return (piece);
 }
