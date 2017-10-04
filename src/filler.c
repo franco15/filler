@@ -20,7 +20,6 @@
 
 static void	return_ex_and_why(t_filler *f)
 {
-	// ft_printf_fd(2, "%d %d\n", f->rx, f->ry);
 	if (f->where_to == 0)
 		f->where_to = 3;
 	else if (f->where_to == 1)

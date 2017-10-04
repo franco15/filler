@@ -45,16 +45,12 @@ static void	create_map(t_filler *f)
 	get_next_line(0, &line);
 	while (i < f->mx)
 	{
-		// if is digito?
 		get_next_line(0, &line);
 		f->map[i++] = ft_strdup(&line[4]);
 	}
 	get_pz(f);
 	if (f->cx == 0 && f->cy == 0 && f->ox == 0 && f->oy == 0)
 		get_coords(f);
-	// f->rx = 0;
-	// f->ry = 0;
-	// f->ded = 0;
 }
 
 static void	map_coords(t_filler *f, char *line)
@@ -72,33 +68,22 @@ static void	map_coords(t_filler *f, char *line)
 int		main(void)
 {
 	char		*line;
-	t_filler	*f;
+	t_filler	f;
 
-	if (!(f = (t_filler*)ft_memalloc(sizeof(t_filler))))
-		return (-1);
 	get_next_line(0, &line);
-	f->moi = line[10] == '1' ? 'O' : 'X';
-	f->toi = f->moi == 'O' ? 'X' : 'O';
-	// f->where_to = f->moi == 'O' ? 0 : 1;
-	// f->cx = 0;
-	// f->cy = 0;
-	// f->ox = 0;
-	// f->oy = 0;
+	f.moi = line[10] == '1' ? 'O' : 'X';
+	f.toi = f.moi == 'O' ? 'X' : 'O';
 	while (1)
 	{
 		get_next_line(0, &line);
-		map_coords(f, line);
-		create_map(f);
-		filler(f);
-		// ft_printf_fd(2, "\nsmn\n");
-		del_map(f);
-		if (f->ded == 1)
-		{
+		map_coords(&f, line);
+		create_map(&f);
+		filler(&f);
+		del_map(&f);
+		if (f.ded == 1)
 			return (0);
-		}
 	}
-	// ft_memdel((void**)f->map);
-	// ft_memdel((void**)f->pz);
-	// ft_memdel((void**)&f);
+	ft_memdel((void**)&f.map);
+	ft_memdel((void**)&f.pz);
 	return (0);
 }
