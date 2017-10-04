@@ -68,3 +68,10 @@ int	ft_atoi(char const *str)
 	}
 	return (r * n);
 }
+
+int	ft_abs(int a)
+{
+	if (a < 0)
+		a *= -1;
+	return (a);
+}

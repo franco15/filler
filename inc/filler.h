@@ -30,6 +30,7 @@ typedef struct	s_filler
 	int			rx;
 	int			ry;
 	int			ded;
+	int			d;
 	int			where_to;
 	char		**map;
 	char		**pz;

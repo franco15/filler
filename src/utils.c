@@ -87,5 +87,5 @@ void	get_coords(t_filler *f)
 		}
 		i++;
 	}
-	f->where_to = f->cx > f->ox ? 1 : 0;
+	f->where_to = f->cx > f->ox ? 0 : 1;
 }

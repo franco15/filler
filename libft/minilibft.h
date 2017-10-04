@@ -37,6 +37,7 @@ void	ft_arrdel(void **arr);
 */
 char	*ft_itoa_base(long long int n, int b);
 int		ft_atoi(char const *str);
+int		ft_abs(int a);
 
 /*
 ** ft_printf_fd.c
