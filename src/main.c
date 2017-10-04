@@ -90,6 +90,7 @@ int		main(void)
 		map_coords(f, line);
 		create_map(f);
 		filler(f);
+		// ft_printf_fd(2, "\nsmn\n");
 		del_map(f);
 		if (f->ded == 1)
 		{
