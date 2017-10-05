@@ -12,12 +12,6 @@
 
 #include "filler.h"
 
-/*
-** map00 p1 [9, 2] p2 [12, 14]
-** map01 p1 [4, 4] p2 [19, 33]
-** map02 p1 [30, 31] p2 [70, 71]
-*/
-
 static void	return_ex_and_why(t_filler *f)
 {
 	if (f->where_to == 0)
