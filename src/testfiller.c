@@ -62,7 +62,7 @@ static void	get_opp_coords(t_filler *f)
 	}
 }
 
-void	filler(t_filler *f)
+void		filler(t_filler *f)
 {
 	get_opp_coords(f);
 	if (!where_to_question_mark(f))

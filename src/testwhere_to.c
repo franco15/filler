@@ -8,7 +8,7 @@ int	to_ne(t_filler *f)
 
 	i = f->mx;
 	d = f->mx + f->my;
-	while (i > 0)
+	while (i > -f->pzx)
 	{
 		j = -f->pzy;
 		while (j < f->my)
@@ -37,10 +37,10 @@ int	to_nw(t_filler *f)
 
 	i = f->mx;
 	d = f->mx + f->my;
-	while (i > 0)
+	while (i > -f->pzx)
 	{
 		j = f->my;
-		while (j > 0)
+		while (j > -f->pzy)
 		{
 			if (check_piece(f, i, j) == 1)
 			{
@@ -84,7 +84,7 @@ int	to_se(t_filler *f)
 		}
 		i++;
 	}
-	return (d != f->mx + f->my ? 1 : 0);
+	return (d < f->mx + f->my ? 1 : 0);
 
 }
 
@@ -99,7 +99,7 @@ int	to_sw(t_filler *f)
 	while (i < f->mx)
 	{
 		j = f->my;
-		while (j > 0)
+		while (j > -f->pzy)
 		{
 			if (check_piece(f, i, j) == 1)
 			{
