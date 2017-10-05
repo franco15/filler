@@ -13,9 +13,11 @@ static int	is_valid(t_filler *f, int i, int j)
 		y = -1;
 		while (++y < f->pzy)
 		{
-			if ((x + i > f->mx - 1 || y + j > f->my - 1) && f->pz[x][y] == '*')
+			if ((x + i >= f->mx || y + j >= f->my || x + i < 0 || y + j < 0) &&
+			f->pz[x][y] == '*')
 				return (0);
-			else if ((x + i > f->mx - 1 || y + j > f->my - 1) && f->pz[x][y] == '.')
+			else if ((x + i >= f->mx || y + j >= f->my || x + i < 0 ||
+			y + j < 0) && f->pz[x][y] == '.')
 				continue ;
 			if ((f->map[x + i][y + j] == f->moi ||
 			f->map[x + i][y + j] == f->moi + 32) && f->pz[x][y] == '*')
