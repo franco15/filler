@@ -12,13 +12,11 @@
 
 #include "filler.h"
 
-static int	is_valid(t_filler *f, int i, int j)
+static int	is_valid(t_filler *f, int i, int j, int x)
 {
-	int	x;
 	int	y;
 	int	piece;
 
-	x = -1;
 	piece = 0;
 	while (++x < f->pzx)
 	{
@@ -42,17 +40,17 @@ static int	is_valid(t_filler *f, int i, int j)
 	return (piece == 1 ? 1 : 0);
 }
 
-int	check_piece(t_filler *f, int i, int j)
+int			check_piece(t_filler *f, int i, int j)
 {
 	if (i > f->mx)
 		return (0);
 	else if (j > f->my)
 		return (0);
 	else
-		return (is_valid(f, i, j));
+		return (is_valid(f, i, j, -1));
 }
 
-void	del_map(t_filler *f)
+void		del_map(t_filler *f)
 {
 	int	i;
 
@@ -64,13 +62,13 @@ void	del_map(t_filler *f)
 		ft_memdel((void**)&f->pz[i++]);
 }
 
-void	get_coords(t_filler *f)
+void		get_coords(t_filler *f)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < f->mx)
+	while (i < f->mx)
 	{
 		j = 0;
 		while (j < f->my)

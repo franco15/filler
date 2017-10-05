@@ -65,7 +65,7 @@ static void	map_coords(t_filler *f, char *line)
 	f->my = ft_atoi(&line[i]);
 }
 
-int		main(void)
+int			main(void)
 {
 	char		*line;
 	t_filler	f;

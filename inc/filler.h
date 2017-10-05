@@ -13,7 +13,7 @@
 #ifndef FILLER_H
 # define FILLER_H
 
-#include "../libft/minilibft.h"
+# include "../libft/minilibft.h"
 
 typedef struct	s_filler
 {
@@ -39,27 +39,26 @@ typedef struct	s_filler
 /*
 ** filler.c
 */
-void	filler(t_filler *f);
+void			filler(t_filler *f);
 
 /*
 ** main.c
 */
-int		main(void);
+int				main(void);
 
 /*
 ** utils.c
 */
-// void	get_coords(t_filler *f);
-void	del_map(t_filler *f);
-int		check_piece(t_filler *f, int i, int j);
-void	get_coords(t_filler *f);
+void			del_map(t_filler *f);
+int				check_piece(t_filler *f, int i, int j);
+void			get_coords(t_filler *f);
 
 /*
-**
+** where_to.c
 */
-int		to_ne(t_filler *f);
-int		to_nw(t_filler *f);
-int		to_sw(t_filler *f);
-int		to_se(t_filler *f);
+int				to_ne(t_filler *f);
+int				to_nw(t_filler *f);
+int				to_sw(t_filler *f);
+int				to_se(t_filler *f);
 
 #endif

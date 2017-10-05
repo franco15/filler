@@ -46,7 +46,7 @@ char		*ft_itoa_base(long long int n, int b)
 	return (num);
 }
 
-int	ft_atoi(char const *str)
+int			ft_atoi(char const *str)
 {
 	int	r;
 	int	n;
@@ -69,7 +69,7 @@ int	ft_atoi(char const *str)
 	return (r * n);
 }
 
-int	ft_abs(int a)
+int			ft_abs(int a)
 {
 	if (a < 0)
 		a *= -1;

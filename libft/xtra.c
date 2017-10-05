@@ -12,12 +12,12 @@
 
 #include "minilibft.h"
 
-int	ft_isdigit(int c)
+int		ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-int	ft_isspace(int c)
+int		ft_isspace(int c)
 {
 	return (c == 32 || c == 9 || c == 11 || c == 13 || c == 10 || c == '\f');
 }
