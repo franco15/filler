@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
-int	ft_len(char *s)
+static int	ft_len(char *s)
 {
 	int i;
 	int j;
@@ -29,7 +29,7 @@ int	ft_len(char *s)
 	return (j);
 }
 
-int	ft_solve(char **line, char *stc_buf)
+static int	ft_solve(char **line, char *stc_buf)
 {
 	char *i;
 	char *temp;
@@ -50,7 +50,7 @@ int	ft_solve(char **line, char *stc_buf)
 	return (0);
 }
 
-int	get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
 	static char *stc_buff = NULL;
 	char		buff[BUFF_SIZE + 1];
